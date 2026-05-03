@@ -1,0 +1,14 @@
+
+<app-user-popup *ngIf="modoPopup !== 'CLOSED'"
+                (cerrarPopUpOk)="onCerrarPopUpOk()"
+                (cerrarPopUpCancel)="onCerrarPopUpCancel()"
+/>
+
+<div class="user-list-container">
+    <h2>User List</h2>
+    <!-- @TODO: Implement user list display here -->
+    <div>
+        <button (click)="launchPopup()">Popup</button>
+    </div>
+
+</div>
