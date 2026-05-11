@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/core/services/login.service';
+import ConstLocalStorage from 'src/app/shared/contants/const-local-storage';
 
 
 @Component({
@@ -11,9 +13,14 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  constructor(private router: Router) {
-    // @TODO: Implementar el constructor
+  LoginService: LoginService;
+
+  constructor(private router: Router, private loginService: LoginService) {
+    this.LoginService = loginService;
   }
+
+  public iniciarSesion() {
+    console.log('Iniciar sesión');}
 
   // @TODO: Implementar métodos, atributos, etc. necesarios para el funcionamiento del login
 }
