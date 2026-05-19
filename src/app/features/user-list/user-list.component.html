@@ -1,5 +1,9 @@
-<app-user-popup *ngIf="modoPopup !== 'CLOSED'" [estadoPopup]="estadoPopup" [userId]="selectedUserId"
-    (cerrarPopUpCancel)="onCerrarPopUpCancel()"></app-user-popup>
+<app-user-popup *ngIf="modoPopup !== 'CLOSED'" 
+    [estadoPopup]="estadoPopup" 
+    [userId]="selectedUserId"
+    (cerrarPopUpCancel)="onCerrarPopUpCancel()"
+    (cerrarPopUpOk)="onCerrarPopUpOk()">
+</app-user-popup>
 
 <div class="user-list-container">
     <h2>Lista de Usuarios</h2>
@@ -50,7 +54,7 @@
                         <td>{{usuario.fechaHoraCreacion | date: 'EEE MMM dd yyyy HH:mm:ss' }}</td>
                         <td>{{usuario.fechaNacimiento | date: 'EEE MMM dd yyyy' }}</td>
                         <td>{{usuario.horaDesayuno | slice:0:5}}</td>
-<td>{{ usuario.puestoDeTrabajoNombre || '-' }}</td>
+                        <td>{{ usuario.puestoDeTrabajoNombre || '-' }}</td>
                         <td [title]="getDireccionPrincipal(usuario)">
                             {{ getDireccionPrincipal(usuario) }}
                         </td>

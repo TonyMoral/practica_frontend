@@ -48,6 +48,12 @@ export class UserListComponent implements OnInit {
 
   onCerrarPopUpOk() {
     this.modoPopup = 'CLOSED';
+    this.cargarUsuarios();
+  }
+
+  async cargarUsuarios() {
+    this.usuarios = await this.userService.obtenerUsuarios();
+    this.selectedUserId = this.usuarios[0]?.id || 0;
   }
 
   onCerrarPopUpCancel() {
