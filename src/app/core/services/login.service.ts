@@ -14,9 +14,10 @@ export class LoginService {
     let params = new HttpParams()
         .set(ConstUrls.NICK_USUARIO_PARAM, nickUsuario)
         .set(ConstUrls.PASS_USUARIO_PARAM, contrasena);
+
     return await to(
         this.http
-            .post<boolean>('http://localhost:8080/usuarios/login',
+            .post<boolean>(`${ConstUrls.API_URL}/usuarios/login`,
                 null, { params: params })
             .toPromise()
     )

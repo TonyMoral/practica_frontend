@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output} from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import { CommonModule } from "@angular/common";
 
 @Component({
@@ -12,6 +12,11 @@ export class UserPopupComponent implements OnInit {
 
     @Output() cerrarPopUpOk = new EventEmitter<void>();
     @Output() cerrarPopUpCancel = new EventEmitter<void>();
+
+    @Input() estadoPopup: string = 'CREAR';
+    @Input() userId: number = 0;
+
+
     constructor() {
 
     }
@@ -23,6 +28,12 @@ export class UserPopupComponent implements OnInit {
         console.log('Save button clicked');
         console.log('nickUsuario:', localStorage.getItem('nickUsuario'));
         console.log('contrasena:', localStorage.getItem('contrasena'));
+        if (this.estadoPopup === 'CREAR')
+            console.log('estadoPopup:', this.estadoPopup);
+        else
+            console.log('estadoPopup:', this.estadoPopup);
+        console.log('userId:', this.userId);
+
         this.cerrarPopUpOk.emit();
     }
     onCancel() {

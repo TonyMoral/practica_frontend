@@ -1,14 +1,67 @@
-
-<app-user-popup *ngIf="modoPopup !== 'CLOSED'"
-                (cerrarPopUpOk)="onCerrarPopUpOk()"
-                (cerrarPopUpCancel)="onCerrarPopUpCancel()"
-/>
+<app-user-popup *ngIf="modoPopup !== 'CLOSED'" [estadoPopup]="estadoPopup" [userId]="selectedUserId"
+    (cerrarPopUpCancel)="onCerrarPopUpCancel()"></app-user-popup>
 
 <div class="user-list-container">
-    <h2>User List</h2>
+    <h2>Lista de Usuarios</h2>
     <!-- @TODO: Implement user list display here -->
-    <div>
+    <!-- <div>
         <button (click)="launchPopup()">Popup</button>
-    </div>
+    </div> -->
 
+    <div>
+
+        <div class="container-button">
+            <button class="button main-button" (click)="launchPopupCreate()">Crear</button>
+            <button class="button main-button" (click)="launchPopupUpdate()">Actualizar</button>
+            <button class="button main-button-icon"><img src="assets/images/DeleteIcon.JPG" alt="Delete"
+                    class="img-icon" /></button>
+        </div>
+
+        <div class="table-container-overflow">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Select</th>
+                        <th>Genero</th>
+                        <th>nickUsuario</th>
+                        <th>Nombre Completo</th>
+                        <th>Fecha de Creación</th>
+                        <th>Fecha de Nacimiento</th>
+                        <th>Desayuno</th>
+                        <th>Puesto de Trabajo</th>
+                        <th>Direccion Principal</th>
+                        <th>Direcciones Extra</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let usuario of usuarios ; let id = index" class="table-column">
+                        <td>
+                            <input type="radio" name="selectedUser" [value]="usuario.id" [(ngModel)]="selectedUserId">
+                        </td>
+                        <td>
+                            <img *ngIf="usuario.generoId == 2" src="assets/images/Female.JPG"
+                                alt="{{usuario.genero?.nombre}}" class="img-gender">
+                            <img *ngIf="usuario.generoId == 1" src="assets/images/Male.JPG"
+                                alt="{{usuario.genero?.nombre}}" class="img-gender">
+                        </td>
+                        <td>{{usuario.nickUsuario}}</td>
+                        <td>{{nombreCompleto(usuario)}}</td>
+                        <td>{{usuario.fechaHoraCreacion | date: 'EEE MMM dd yyyy HH:mm:ss' }}</td>
+                        <td>{{usuario.fechaNacimiento | date: 'EEE MMM dd yyyy' }}</td>
+                        <td>{{usuario.horaDesayuno | slice:0:5}}</td>
+<td>{{ usuario.puestoDeTrabajoNombre || '-' }}</td>
+                        <td [title]="getDireccionPrincipal(usuario)">
+                            {{ getDireccionPrincipal(usuario) }}
+                        </td>
+
+                        <td>
+                            {{ getDireccionesExtra(usuario) }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
 </div>

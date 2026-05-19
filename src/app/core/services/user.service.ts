@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { Usuario } from '../models/user.model';
 import to from "./utils.service";
+import ConstUrls from 'src/app/shared/contants/const-urls';
 
 
 @Injectable({
@@ -13,7 +14,7 @@ export class UserService {
   async obtenerUsuarioPorId(id: number) {
     return await to(
         this.http
-            .get<Usuario>('/assets/mocks/user.json')
+            .get<Usuario>(`${ConstUrls.API_URL}/usuarios/${id}}`)
             .toPromise()
     )
   }
@@ -21,7 +22,7 @@ export class UserService {
   async obtenerUsuarios() {
     return await to(
         this.http
-            .get<Usuario>('/assets/mocks/user.json')
+            .get<Usuario[]>(`${ConstUrls.API_URL}/usuarios`)
             .toPromise()
     )
   }
